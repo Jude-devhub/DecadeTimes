@@ -1,6 +1,8 @@
 import React from "react";
 import NewsCard from '@/components/ui/NewsCard';
 
+const apiKey = process.env.NEWS_API_KEY;
+
 interface propsDataType {
     id: string,
   title: string;

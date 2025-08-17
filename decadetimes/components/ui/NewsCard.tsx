@@ -3,26 +3,33 @@ import Link from "next/link";
 import React from "react";
 
 interface propsDataType {
-  id: string;
+  source: {
+    id: string,
+    name: string
+  };
+  author: string;
   title: string;
-  body: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
 }
-const Newscard: React.FC<propsDataType> = ({ title, body, id }) => {
+const Newscard: React.FC<propsDataType> = ({title, description, source, urlToImage, publishedAt, url, author }) => {
   return (
     <div className="card bg-base-100 w-fit shadow-sm md:w-fit lg:w-fit ">
       
       <figure className="size-auto">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes"
+          src={urlToImage}
+          alt="News Image"
         />
       </figure>
       
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p>
-          {body}
-          <Link href={`/article/${id}`} className="">
+          {description}
+          <Link href={`/article/${source.id}`} className="">
             {" "}
             ...Read more
           </Link>
