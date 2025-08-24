@@ -1,5 +1,5 @@
 import React from "react";
-import NewsCard from "@/components/ui/NewsCard";
+import NewsCard from "@/components/ui/NewsCard"; // Adjust the import path as necessary
 
 const apiKey = process.env.NEWS_API_KEY;
 
@@ -43,7 +43,7 @@ export default async function businessNews() {
       {articles.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).map((article, index) => (
         <NewsCard key={index} article={article} index={index} />
         
-      ))}
+      ))} 
     </div>
   );
 }
