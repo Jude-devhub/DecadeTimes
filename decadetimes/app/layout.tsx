@@ -33,7 +33,7 @@ export default function RootLayout({
         <div className="grid grid-cols-6 gap-2 ">
           <div className="col-start-1 col-end-7 ...">AVD</div>
           <div className="col-start-1 col-end-7 ..."><Navbar /></div>
-          <div className="col-start-1 col-end-7 p-2 ...">{children}</div>
+          <div className="col-start-1 col-end-7 p-4 ...">{children}</div>
           <div className="col-start-1 col-end-7 ...">AVD</div>
           <div className="col-start-1 col-end-7 ..."><Footer /></div>
         </div>

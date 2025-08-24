@@ -4,16 +4,16 @@ import NewsCard from "@/components/ui/NewsCard";
 const apiKey = process.env.NEWS_API_KEY;
 
 interface NewsArticle {
-     source: {
-      id: string;
-      name: string;
-    };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: string;
+  source: {
+    id: string;
+    name: string;
+  };
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: string;
 }
 
 interface ApiResponse {
@@ -22,13 +22,21 @@ interface ApiResponse {
   articles: NewsArticle[];
 }
 
+export default async function newsSearchpage({
+  params,
+}: {
+  params: Promise<{ search: string }>;
+}) {
+  const { search } = await params;
 
+  const today = new Date();
+  today.setDate(today.getDate() - 1); // subtract 1 day
+  const yesterday = today.toISOString().split("T")[0];
 
-export default async function businessNews() {
   const response = await fetch(
-    `https://newsapi.org/v2/everything?q=business&from=2025-08-01&sortBy=popularity&apiKey=${apiKey}`
+    `https://newsapi.org/v2/everything?q=${search}&from=${yesterday}&sortBy=popularity&apiKey=${apiKey}`
   ); //API for testing
-  const data : ApiResponse = await response.json();
+  const data: ApiResponse = await response.json();
 
   const articles = data.articles;
 
@@ -42,7 +50,6 @@ export default async function businessNews() {
     >
       {articles.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).map((article, index) => (
         <NewsCard key={index} article={article} index={index} />
-        
       ))}
     </div>
   );
